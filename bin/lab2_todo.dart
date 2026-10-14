@@ -1,3 +1,6 @@
+import 'package:ansicolor/ansicolor.dart';
+
+
 // //import 'dart:io';
 // import 'package:lab2_todo/todo.dart';
 // //void main() {
@@ -99,15 +102,11 @@ import 'dart:io';
 import 'package:lab2_todo/todo.dart';
 import 'package:ansicolor/ansicolor.dart';
 
-// Глобальные цветные "ручки" для вывода
 final AnsiPen greenPen = AnsiPen()..green();
 final AnsiPen redPen = AnsiPen()..red();
 final AnsiPen bluePen = AnsiPen()..blue();
 final AnsiPen yellowPen = AnsiPen()..yellow();
 
-// ============================================================
-// Функция печати меню
-// ============================================================
 void printMenu() {
   print('');
   print(yellowPen('ToDo список'));
@@ -118,9 +117,6 @@ void printMenu() {
   print('exit - выйти');
 }
 
-// ============================================================
-// Добавление задачи
-// ============================================================
 void addTodo(List<Todo> todos) {
   stdout.write('Название задачи: ');
   String? input = stdin.readLineSync();
@@ -128,28 +124,22 @@ void addTodo(List<Todo> todos) {
     print(redPen('Ошибка: название не может быть пустым'));
     return;
   }
-  // int newId = todos.isEmpty ? 1 : todos.last.id + 1;  // больше не нужно
   todos.add(Todo(title: input.trim()));
   print(bluePen('Задача добавлена!'));
 }
 
-// ============================================================
-// Вывод списка задач
-// ============================================================
 void listTodos(List<Todo> todos) {
   if (todos.isEmpty) {
     print('Список задач пуст');
     return;
   }
   print('');
+  print(bluePen('--- Ваши задачи ---'));
   for (var todo in todos) {
     print(todo);
   }
 }
 
-// ============================================================
-// Отметить задачу выполненной
-// ============================================================
 void completeTodo(List<Todo> todos) {
   stdout.write('ID задачи: ');
   String? input = stdin.readLineSync();
@@ -171,9 +161,6 @@ void completeTodo(List<Todo> todos) {
   print(redPen('Задача с ID $id не найдена'));
 }
 
-// ============================================================
-// Удаление задачи
-// ============================================================
 void deleteTodo(List<Todo> todos) {
   stdout.write('ID задачи: ');
   String? input = stdin.readLineSync();
@@ -195,9 +182,6 @@ void deleteTodo(List<Todo> todos) {
   print(redPen('Задача с ID $id не найдена'));
 }
 
-// ============================================================
-// Главная функция — точка входа
-// ============================================================
 void main() {
   List<Todo> todos = [];
   printMenu();
@@ -224,7 +208,7 @@ void main() {
         deleteTodo(todos);
         break;
       case 'exit':
-        print('До свидания!');
+        print(greenPen('До свидания!'));
         return;
       default:
         printMenu();
