@@ -4,10 +4,11 @@ version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 
 environment:
-  sdk: ^3.13.1
+  sdk: ^3.11.0
 
 # Add regular dependencies here.
 dependencies:
+  ansicolor: ^2.0.3
   path: ^1.9.0
 
 dev_dependencies:
